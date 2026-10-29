@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+.pytest_cache/
+*.egg-info/
+data/*.jsonl
+data/*.csv
+!data/.gitkeep
+outputs/
+models/
+results/predictions_*.jsonl
+results/locust*
+.DS_Store

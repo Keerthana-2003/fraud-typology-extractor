@@ -1,0 +1,2 @@
+# Serving the merged model with vLLM (Linux + NVIDIA GPU)
+vllm>=0.6

@@ -1,0 +1,8 @@
+# Fine-tuning (GPU: Colab / Kaggle T4 or better)
+torch>=2.3
+transformers>=4.45
+peft>=0.12
+trl>=0.12
+bitsandbytes>=0.43
+accelerate>=0.33
+datasets>=2.20

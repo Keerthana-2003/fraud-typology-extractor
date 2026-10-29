@@ -1,0 +1,26 @@
+# Requires an NVIDIA GPU + NVIDIA Container Toolkit. Put the merged model in ./models/qwen3b-fraud-typology
+services:
+  vllm:
+    image: vllm/vllm-openai:latest   # pin to the version you tested, e.g. vllm/vllm-openai:v0.6.6
+    command: ["--model", "/models/qwen3b-fraud-typology", "--served-model-name", "ft",
+              "--max-model-len", "2048", "--gpu-memory-utilization", "0.85"]
+    volumes:
+      - ./models:/models
+    ports:
+      - "8001:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  api:
+    build: .
+    environment:
+      VLLM_URL: http://vllm:8000/v1
+      MODEL_NAME: ft
+    ports:
+      - "8000:8000"
+    depends_on:
+      - vllm
